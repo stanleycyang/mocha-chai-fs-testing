@@ -48,5 +48,15 @@ describe('Search', function(){
                 done();
             });
         });
+
+        describe('#match()', function(){
+            it('should find and return matches based on a query', function(){
+                var files = ['hello.txt', 'world.js', 'another.js'];
+                var results = search.match('.js', files);
+                expect(results).to.deep.equal(['world.js', 'another.js']);
+                results = search.match('hello', files);
+                expect(results).to.deep.equal(['hello.txt']);
+            });
+        });
     });
 });
