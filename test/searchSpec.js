@@ -26,6 +26,17 @@ describe('Search', function(){
            fs.rmdirSync(".test_files");
        });
 
+
+       it('should stop at a specified depth', function(done){
+            search.scan('.test_files', 1, function(error, flist){
+                expect(flist).to.deep.equal([
+                    '.test_files/a',
+                    '.test_files/b'
+                ]);
+                done();
+            });
+       });
+
         it('should retrieve the files from a directory', function(done){
             search.scan('.test_files', 0, function(error, flist){
                 expect(flist).to.deep.equal([
